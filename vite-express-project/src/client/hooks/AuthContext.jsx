@@ -7,19 +7,19 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [loggedInUser, setLoggedInUser] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const checkAuthentication = async () => {
     try {
-      const response = await fetch('/api/check-auth', {
-        method: 'GET',
-        credentials: 'include',
+      const response = await fetch("/api/check-auth", {
+        method: "GET",
+        credentials: "include",
       });
-  
+
       if (response.ok) {
         const result = await response.json();
         return result.authenticated;
@@ -27,22 +27,22 @@ export const AuthProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
-      console.error('Error checking authentication:', error);
+      console.error("Error checking authentication:", error);
       return false;
     }
   };
-  
+
   // Initialize Authentication when the app mounts
   // So when access another page form address bar, state will be set to logged in
   const initializeAuthentication = async () => {
     try {
       const isAuthenticated = await checkAuthentication();
       if (isAuthenticated) {
-        const response = await fetch('/api/user-data', {
-          method: 'GET',
-          credentials: 'include',
+        const response = await fetch("/api/user-data", {
+          method: "GET",
+          credentials: "include",
         });
-  
+
         if (response.ok) {
           const userData = await response.json();
           setLoggedInUser(userData);
@@ -55,11 +55,11 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn(false);
         setLoggedInUser(null);
       }
-  
+
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
-      console.error('Error during authentication:', error);
+      console.error("Error during authentication:", error);
     }
   };
 
@@ -72,31 +72,31 @@ export const AuthProvider = ({ children }) => {
     setLoggedInUser(userData || null);
   };
 
-  // Log out is updated to delete cookie session 
+  // Log out is updated to delete cookie session
   const logout = async () => {
     try {
-      await fetch('/api/logout', {
-        method: 'POST',
-        credentials: 'include',
+      await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include",
       });
-      setEmail('');
-      setPassword('');
+      setEmail("");
+      setPassword("");
       setIsLoggedIn(false);
       setLoggedInUser(null);
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
-  };  
+  };
 
   const handleLogin = async () => {
     try {
       // reset error state to clear error msg
       setError(null);
-      
-      const response = await fetch('/api/login', {
-        method: 'POST',
+
+      const response = await fetch("/api/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
@@ -104,36 +104,50 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         // const userData = await response.json();
 
-        const supabaseResponse = await fetch(`/api/supabase/users?email=${email}`);
+        const supabaseResponse = await fetch(
+          `/api/supabase/users?email=${email}`
+        );
         const supabaseUserData = await supabaseResponse.json();
 
         if (supabaseResponse.ok && supabaseUserData.length > 0) {
           const supabaseUserId = supabaseUserData[0].id;
-          
+          const { flag } = supabaseUserData[0];
+          const { trigger } = true;
+          console.log("supabaseUserData", supabaseUserData[0]);
+
           login(supabaseUserData[0]);
 
           // Navigate to the user's profile using the Supabase user ID
-          navigate(`/users/${supabaseUserId}`);
-          return true;
+
+          if ((supabaseUserData[0].flag = "FALSE")) {
+            console.log("flag", flag);
+            navigate(`/users/${supabaseUserId}?trigger=${flag}`);
+          } else {
+            navigate(`/users/${supabaseUserId}`);
+            console.log("flag2", flag);
+            console.log("trigger", trigger);
+            console.log("supabaseUserData", supabaseUserData[0]);
+            return true;
+          }
         } else {
-          console.error('Failed to fetch user data from Supabase');
+          console.error("Failed to fetch user data from Supabase");
           return false;
         }
       } else {
-        console.error('Login failed');
-        
+        console.error("Login failed");
+
         // Get error message from api and set it to client
         const errorMessage = await response.json();
         setError(errorMessage.error);
         return false;
       }
     } catch (error) {
-      console.error('Error during login:', error);
-      setError('An unexpected error occured');
+      console.error("Error during login:", error);
+      setError("An unexpected error occured");
       return false;
     }
   };
-    
+
   const resetError = () => {
     setError(null);
   };
@@ -154,14 +168,10 @@ export const AuthProvider = ({ children }) => {
     isLoading,
     checkAuthentication,
     loggedInUser,
-    setLoggedInUser
+    setLoggedInUser,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
