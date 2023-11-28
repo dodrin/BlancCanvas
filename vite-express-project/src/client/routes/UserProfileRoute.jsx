@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/AuthContext";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { LoadingIndicator } from "../components/EntityList/LoadingIndicator";
@@ -15,8 +15,19 @@ export default function UserProfile() {
   const [editing, setEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({});
   const { fetchUser, updateUser } = useUserProfile(id, setUser);
+  const [banner, setBanner] = useState(false);
+
+  const location = useLocation();
+  const parms = new URLSearchParams(location.search);
+  const trigger = parms.get("trigger");
 
   useUserProfile(id, setUser);
+
+  useEffect(() => {
+    if (trigger === "false") {
+      setEditing(true);
+    }
+  }, [trigger]);
 
   const handleEditSubmit = async () => {
     try {
@@ -25,10 +36,12 @@ export default function UserProfile() {
         bio: editedUser.bio || user.bio,
         wage: editedUser.wage || user.wage,
         profile_picture: editedUser.profile_picture || user.profile_picture,
+        flag: true,
       };
 
       await updateUser(updatedData);
       setEditing(false);
+      setBanner(true);
     } catch (error) {
       console.error("Error updating user:", error);
     }
@@ -52,12 +65,20 @@ export default function UserProfile() {
         <p className="m-10 font-subHeading text-3xl">Loading</p>
         <LoadingIndicator />
       </div>
-      
     );
   }
 
   return (
     <div className="m-16 flex flex-col justify-center">
+      {isLoggedIn &&
+        trigger === "false" &&
+        !banner && ( // Check if user is logged in and trigger is false
+          <div className="bg-red-500 text-white px-4 py-2">
+            Please complete your profile, before continuing. (This message will
+            disappear once you have completed your profile)
+          </div>
+        )}
+
       {isLoggedIn && loggedInUser && user.id === loggedInUser.id && (
         <header className="font-subHeading text-xl text-accent flex justify-around px-5 py-10">
           My Profile
@@ -147,18 +168,18 @@ export default function UserProfile() {
 
       <section>
         <h2 className="font-heading text-2xl m-5 pt-5">My Projects</h2>
-          <div className="carousel rounded-box w-3/4">
-            {user &&
-              user.images.map((image, index) => (
-                <div className="carousel-item" key={image}>
-                  <img
-                    src={image}
-                    alt={`Image ${index + 1}`}
-                    className="w-72 h-72"
-                  />
-                </div>
-              ))}
-          </div>
+        <div className="carousel rounded-box w-3/4">
+          {user &&
+            user.images.map((image, index) => (
+              <div className="carousel-item" key={image}>
+                <img
+                  src={image}
+                  alt={`Image ${index + 1}`}
+                  className="w-72 h-72"
+                />
+              </div>
+            ))}
+        </div>
       </section>
     </div>
   );
