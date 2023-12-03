@@ -52,7 +52,7 @@ export default function Home({ openModal }) {
             />
           </div>
           <div className="m-10">
-            <h2 className="font-subHeading text-xl mb-2">For Artists</h2>
+            <h2 className="font-subHeading text-xl mb-2 tracking-wide">For Artists</h2>
             <p className="font-bodyFont max-w-sm text-textSecondary">
               Unlock Victoria's Creative Pulse: Connect with local artists who
               breathe life into your vision.
@@ -62,7 +62,7 @@ export default function Home({ openModal }) {
 
         <div className="flex flex-row justify-center items-center my-20">
           <div className="m-10">
-            <h2 className="font-subHeading text-xl mb-2">
+            <h2 className="font-subHeading text-xl mb-2 tracking-wide">
               For Art Lovers and Community
             </h2>
             <p className="font-bodyFont max-w-sm text-textSecondary">
@@ -80,8 +80,8 @@ export default function Home({ openModal }) {
       </section>
 
       <div className="my-20 py-20 bg-primary">
-        <h1 className="font-heading text-3xl dark:text-white">Elevate Your Artistic journey in Victoria!</h1>
-        <h1 className="font-heading text-3xl dark:text-white">Ignite creativity, collaborate, and empower local artistry.</h1>
+        <h1 className="font-heading text-3xl dark:text-white tracking-wide">Elevate Your Artistic journey in Victoria!</h1>
+        <h1 className="font-heading text-3xl dark:text-white tracking-wide">Ignite creativity, collaborate, and empower local artistry.</h1>
       </div>
     </div>
   );
