@@ -34,57 +34,51 @@ export default function NavBar({ openModal }) {
       </span>
       <div>
         <ul className="flex space-x-6">
-          {/* <li>
-            <a
-              href="/artists"
-              className="font-subHeading text-lg font-semibold leading-6 hover:text-primary-content
-              uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]"
-            >
-              Find Artists
-            </a>
-          </li> */}
-
-           <li className="group inline-block relative">
-              <button className="inline-flex items-center ">
-                <span 
-                  className="font-subHeading text-lg font-semibold leading-6 hover:text-primary-content
-                  uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]">
-                  Find Artists
-                </span>
-              </button>
-              <ul className="dropdown-menu absolute hidden text-primary pt-1 mx-5 group-hover:block">
-                <li className="">
-                  <a className="bg-base-100 font-subHeading font-semibold hover:text-primary-content py-4 px-4 block whitespace-no-wrap" href="/artists">
-                    Browse Talents
-                  </a>
-                </li>
-                <li className="">
-                  <a className="bg-base-100 font-subHeading font-semibold hover:text-primary-content py-4 px-4 block whitespace-no-wrap" href="/projects/new">
-                    Create Posts
-                  </a>
-                </li>
-              </ul>
-            </li>
+          <li className="group inline-block relative">
+            <button className="inline-flex items-center ">
+              <span
+                className="font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content
+                  uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]"
+              >
+                Find Artists
+              </span>
+            </button>
+            <ul className="dropdown-menu absolute hidden text-primary pt-1 mx-5 group-hover:block z-50 pl-2">
+              <li className="z-100">
+                <a
+                  className="bg-base-100 font-subHeading font-semibold tracking-wider hover:text-primary-content py-4 px-4 block whitespace-no-wrap transition-all duration-500 before:content-[none] after:content-[none]"
+                  href="/artists"
+                >
+                  Browse Talents
+                </a>
+              </li>
+              <li className="z-100">
+                <a
+                  className="bg-base-100 font-subHeading font-semibold tracking-wider hover:text-primary-content py-4 px-4 block whitespace-no-wrap transition-all duration-500 before:content-[none] after:content-[none]"
+                  href="/projects/new"
+                >
+                  Create Posts
+                </a>
+              </li>
+            </ul>
+          </li>
 
           <li>
             <a
               href="/gigs"
-              className="font-subHeading text-lg font-semibold leading-6 hover:text-primary-content
+              className="font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content
               uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]"
             >
               Find Gigs
             </a>
           </li>
         </ul>
-
-        
       </div>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 items-center">
         <ThemeController />
         {/* Conditionally render different buttons based on the isLoggedIn state */}
         {isLoggedIn ? (
           <>
-          
             <DropDownUser />
 
             <button

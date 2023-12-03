@@ -6,11 +6,11 @@ export default function Home({ openModal }) {
       {/* Hero + CTA button */}
       <div className="flex flex-row items-center p-10 justify-center">
         <article className="p-4 my-15">
-          <h1 className="flex flex-col font-heading text-6xl justify-start">
+          <h1 className="flex flex-col font-heading font-bold text-6xl justify-start tracking-wide">
             Victoria Unleashed
             <p className="font-heading text-5xl">Where Art Flourishes</p>
           </h1>
-          <h3 className="font-subHeading text-lg text-textSecondary mt-5">
+          <h3 className="font-subHeading text-lg text-textSecondary mt-5 tracking-wider">
             Join a Thriving Ecosystem of Local Artists and Enthusiasts
           </h3>
           <div className="inline-flex space-x-6 w-full mt-6 sm:w-auto">

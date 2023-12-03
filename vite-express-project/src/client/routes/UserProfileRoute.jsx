@@ -89,7 +89,7 @@ export default function UserProfile() {
   }
 
   return (
-    <div className="m-10 flex flex-col justify-center">
+    <div className="m-10 flex flex-col justify-center items-center">
       {isLoggedIn && loggedInUser && user.id === loggedInUser.id && (
         <header className="font-subHeading text-xl text-accent flex justify-around items-center px-5 pb-5">
           My Profile
@@ -104,7 +104,7 @@ export default function UserProfile() {
         </header>
       )}
 
-      <main className="flex justify-center">
+      <main className="flex justify-center flex-col md:flex-row">
         {/* Edit view is rendered only when 'editing' is true */}
         {editing && (
           <div className="w-80 grid grid-cols-1 content-around">
