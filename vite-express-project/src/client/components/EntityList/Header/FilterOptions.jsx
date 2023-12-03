@@ -7,15 +7,17 @@ export const FilterOptions = ({ url }) => {
   const { setFilterOptions } = useEntityContext();
 
   return (
-    <div className="flex items-center">
-      <FilterType
-        url={url}
-        setFilterOptions={setFilterOptions}
-      />
-      <FilterWage
-        url={url}
-        setFilterOptions={setFilterOptions}
-      />
+    <div className="flex w-full justify-between">
+      <div className="flex gap-3">
+        <FilterType
+          url={url}
+          setFilterOptions={setFilterOptions}
+        />
+        <FilterWage
+          url={url}
+          setFilterOptions={setFilterOptions}
+        />
+      </div>
       <FilterWord
         setFilterOptions={setFilterOptions}
       />

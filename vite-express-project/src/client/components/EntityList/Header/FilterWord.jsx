@@ -10,13 +10,13 @@ export const FilterWord = ({ setFilterOptions }) => {
   }, []);
 
   return (
-    <div className="pl-4">
+    <div className="pr-2">
       <input
         type="text"
         value={value}
         placeholder="Search..."
         onChange={handleChange}
-        className="w-56 h-8 px-4 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+        className="w-72 h-8 px-4 rounded-md border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
       />
     </div>
   )
