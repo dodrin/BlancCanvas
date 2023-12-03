@@ -4,8 +4,8 @@ export default function Home({ openModal }) {
   return (
     <div>
       {/* Hero + CTA button */}
-      <div className="flex flex-row items-center p-10 justify-center">
-        <article className="p-4 my-15">
+      <div className="flex flex-row items-center justify-center my-48">
+        <article className="p-4 my-15 2xl:p-0">
           <h1 className="flex flex-col font-heading font-bold text-6xl justify-start tracking-wide">
             Victoria Unleashed
             <p className="font-heading text-5xl">Where Art Flourishes</p>
@@ -32,14 +32,12 @@ export default function Home({ openModal }) {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto my-28">
-        <p className="font-subHeading text-2xl text-textSecondary">
+      <div className="max-w-3xl mx-auto my-36">
+        <p className="font-subHeading text-2xl text-textSecondary leading-loose">
           Welcome to #####, where Victoria's art scene comes alive.
-        </p>
-        <p className="font-subHeading text-2xl text-textSecondary">
           Whether you're an artist seeking inspiration or a creative enthusiast
-          ready to embrace local talent,
-          <span className="text-primary">our platform awaits.</span>
+          ready to embrace local talent, 
+          <span className="text-primary"> our platform awaits.</span>
         </p>
       </div>
 
@@ -79,9 +77,10 @@ export default function Home({ openModal }) {
         </div>
       </section>
 
-      <div className="my-20 py-20 bg-primary">
-        <h1 className="font-heading text-3xl dark:text-white tracking-wide">Elevate Your Artistic journey in Victoria!</h1>
-        <h1 className="font-heading text-3xl dark:text-white tracking-wide">Ignite creativity, collaborate, and empower local artistry.</h1>
+      <div className="my-20 py-20 bg-primary ">
+        <h1 className="font-heading text-3xl dark:text-white tracking-wide ">
+          Elevate Your Artistic journey in Victoria!
+          Ignite creativity, collaborate, and empower local artistry.</h1>
       </div>
     </div>
   );

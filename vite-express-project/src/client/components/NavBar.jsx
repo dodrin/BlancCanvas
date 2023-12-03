@@ -25,7 +25,7 @@ export default function NavBar({ openModal }) {
   ];
 
   return (
-    <nav className="flex flex-wrap items-center justify-around p-4">
+    <nav className="flex flex-wrap items-center justify-around ">
       <span
         className="font-heading text-4xl whitespace-nowrap cursor-pointer"
         onClick={handleClickLogo}
