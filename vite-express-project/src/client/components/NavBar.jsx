@@ -27,10 +27,10 @@ export default function NavBar({ openModal }) {
   return (
     <nav className="flex flex-wrap items-center justify-around ">
       <span
-        className="font-heading text-4xl whitespace-nowrap cursor-pointer"
+        className="text-primary font-heading text-4xl font-semibold tracking-wider whitespace-nowrap cursor-pointer flex items-center"
         onClick={handleClickLogo}
       >
-        LOGO
+        Blanc Canvas
       </span>
       <div>
         <ul className="flex space-x-6">
