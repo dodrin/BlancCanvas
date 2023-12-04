@@ -53,7 +53,7 @@ export default function ProjectProfile() {
 
   return (
     <div className="mb-48">
-      <div className="mt-10 flex flex-col items-center justify-center md:flex-row md:items-start">
+      <div className="mt-16 flex flex-col items-center justify-center md:flex-row">
         <div className="m-5 w-1/3 h-full overflow-hidden border border-gray-300 drop-shadow-3xl rounded-3xl">
           <img
             src={`${project.images}`} //change to project.image when ready

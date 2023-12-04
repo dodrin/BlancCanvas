@@ -50,7 +50,7 @@ const ImageCarousel = ({ images }) => {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-4/5 overflow-hidden rounded-box">
+    <div className="relative w-4/5 overflow-hidden rounded-box min-w-[288px]">
       <div
         className="flex transition-transform"
         ref={carouselRef}

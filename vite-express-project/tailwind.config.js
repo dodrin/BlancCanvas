@@ -2,11 +2,7 @@
 export default {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
-    screen: {
-      'xl': {'max': '1279px'},
-      'lg': {'max': '1023px'},
-      'sm': {'max': '420px'},
-    },
+    
     extend: {
       fontFamily: {
         heading: ['Oswald', 'sans-serif'],
