@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/AuthContext";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { LoadingIndicator } from "../components/EntityList/LoadingIndicator";
 import ImageCarousel from "../components/ImageCarousel";
+import InputField from "../components/InputField";
 
 function convertRate(cents) {
   const dollars = cents / 100;
@@ -67,6 +68,10 @@ export default function UserProfile() {
     }
   };
 
+  const handleClick = () => {
+    setEditing((prevEditing) => !prevEditing);
+  };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -93,13 +98,8 @@ export default function UserProfile() {
       {isLoggedIn && loggedInUser && user.id === loggedInUser.id && (
         <header className="font-subHeading text-xl text-accent flex justify-around items-center pb-5">
           <span>My Profile</span>
-          <button
-            className="btn btn-primary btn-sm btn-outline"
-            onClick={() => {
-              setEditing(true);
-            }}
-          >
-            Edit
+          <button className="btn btn-primary btn-outline" onClick={handleClick}>
+            {editing ? "Stop Editing" : "Edit"}
           </button>
         </header>
       )}
@@ -119,13 +119,14 @@ export default function UserProfile() {
             >
               <label
                 htmlFor="name"
-                className="block text-gray-700 text-sm font-bold mb-5"
+                className="block text-gray-700 text-sm font-bold"
               >
                 Name
               </label>
-              <input
+              <InputField
                 type="text"
                 name="name"
+                class="input input-ghost w-full max-w-xs"
                 value={editedUser.name || user.name}
                 placeholder="Name"
                 onChange={handleInputChange}
@@ -133,20 +134,25 @@ export default function UserProfile() {
 
               <label
                 htmlFor="image"
-                className="block text-gray-700 text-sm font-bold mb-5"
+                className="block text-gray-700 text-sm font-bold mb-3"
               >
                 Profile Picture Upload
               </label>
               <input
+               
                 type="file"
+               
                 name="image"
-                className="mb-5 "
+               
+                className="file-input file-input-bordered w-full max-w-xs mb-5"
+               
                 onChange={handleFileChange}
+             
               />
 
               <label
                 htmlFor="Bio"
-                className="block text-gray-700 text-sm font-bold mb-5"
+                className="block text-gray-700 text-sm font-bold mb-3"
               >
                 Your Bio
               </label>
@@ -155,24 +161,28 @@ export default function UserProfile() {
                 value={editedUser.bio || user.bio}
                 placeholder="Bio"
                 onChange={handleInputChange}
-                className="h-60 mb-5"
+                className="textarea textarea-ghost w-80 h-60 mb-3"
               ></textarea>
               <label
                 htmlFor="wage"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 text-sm font-bold mb-3"
               >
-                How Much You Charge Per Hour
+                How Much You Charge?
               </label>
-              <input
-                type="number"
-                name="wage"
-                value={editedUser.wage ? editedUser.wage / 100 : ""}
-                placeholder="Wage"
-                onChange={handleInputChange}
-              />
+              <label className="input-group">
+                <input
+                  type="number"
+                  name="wage"
+                  value={editedUser.wage ? editedUser.wage / 100 : ""}
+                  placeholder="Wage"
+                  className="input input-bordered"
+                  onChange={handleInputChange}
+                />
+                <span className="input-hint"> / hour</span>
+              </label>
             </form>
             <button
-              className="font-subHeading bg-button hover:bg-buttonHover text-white text-lg font-bold py-1 px-4 rounded"
+              className="btn btn-primary btn-outline w-20 place-self-center mt-5"
               onClick={handleEditSubmit}
               type="submit"
             >
@@ -189,7 +199,7 @@ export default function UserProfile() {
           />
         </div>
 
-        <div className="w-80 grid grid-cols-1 content-around">
+        <div className="w-80 grid grid-cols-1 content-around mb">
           <h2 className="font-heading text-3xl">{user.name}</h2>
           <p className="text-textSecondary">{user.bio}</p>
           <span className="text-accent">
