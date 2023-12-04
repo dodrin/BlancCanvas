@@ -1,10 +1,12 @@
 import { useState, useCallback } from 'react';
 import { useDebounce } from './useDebounce';
-import { PRICE_BY_URL } from '../constants';
+import { PRICE_BY_URL, TYPES_BY_URL } from '../constants';
 
 export const useFilterOptions = ({ url }) => {
   const [filterOptions, _setFilterOptions] = useState({
-    selectedTypeById: { '1': true },
+    selectedTypeById:
+      TYPES_BY_URL[url].reduce(
+        (selectedTypeById, type) => ({ ...selectedTypeById, [type.id]: true }), {}),
     valueUnder: PRICE_BY_URL[url].max * 100,
     searchWord: ''
   });

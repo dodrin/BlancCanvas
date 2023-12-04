@@ -1,3 +1,5 @@
+import { artistType, projectType } from "../../constants/TypeSelections";
+
 export const ITEM_SIZE = 300;
 export const ROW_HEIGHT = 450;
 export const ROW_HEIGHT_CURRENT_LAST = 390;
@@ -91,4 +93,9 @@ export const PRICE_BY_URL = {
     min: BUDGET_MIN,
     max: BUDGET_MAX
   }
+};
+
+export const TYPES_BY_URL = {
+  [URL_ARTISTS]: artistType.slice(1),
+  [URL_GIGS]: projectType.slice(1),
 };

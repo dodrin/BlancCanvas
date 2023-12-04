@@ -31,7 +31,6 @@ export const EntityCard = ({
   const navigate = useNavigate();
 
   const { loggedInUser, isLoggedIn } = useAuth();
-  // const { items, liked, handleLike, handleDislike } = useLikes(isLoggedIn, loggedInUser.id, data);
 
   const { liked: processedLiked } = useProcessLikesData(likesData, data);
 

@@ -67,8 +67,7 @@ export const EntityTable = ({ url, likesData }) => {
             sortDirection,
             selectedTypeById,
             valueUnder,
-            searchWord,
-            sortAttribute
+            searchWord
           }
         );
       }

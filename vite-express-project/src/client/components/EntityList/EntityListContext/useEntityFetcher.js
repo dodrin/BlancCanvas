@@ -32,6 +32,8 @@ export const useEntityFetcher = ({
     async (offset, { sortAttribute, sortDirection, selectedTypeById, valueUnder, searchWord } = {}) => {
       setState((prev) => ({ ...prev, isFetching: true }));
 
+      console.log(selectedTypeById);
+
       const params = {
         offset,
         limit: ITEMS_PER_LOAD,
@@ -39,8 +41,8 @@ export const useEntityFetcher = ({
         sort_direction: sortDirection,
         selected_type_ids:
           Object.keys(selectedTypeById)
-            .filter((id) => id !== '1' && !!selectedTypeById[id])
-            .map((id) => _url === URL_ARTISTS ? id : projectType[id].name),
+            .filter((id) => !!selectedTypeById[id])
+            .map((id) => _url === URL_ARTISTS ? id : projectType[id - 1].name),
         value_under: valueUnder,
         search_word: searchWord
       };
