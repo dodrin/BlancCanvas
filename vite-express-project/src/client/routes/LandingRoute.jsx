@@ -34,10 +34,10 @@ export default function Home({ openModal }) {
 
       <div className="max-w-3xl mx-auto my-36">
         <p className="font-subHeading text-2xl text-textSecondary leading-loose">
-          Welcome to #####, where Victoria's art scene comes alive.
+          Welcome to <span className="text-primary">Blanc Canvas</span>, where Victoria's art scene comes alive.
           Whether you're an artist seeking inspiration or a creative enthusiast
           ready to embrace local talent, 
-          <span className="text-primary"> our platform awaits.</span>
+          <span className="text-primary"> our platform awaits</span>.
         </p>
       </div>
 
