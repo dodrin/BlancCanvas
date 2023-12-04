@@ -8,7 +8,7 @@ const polaroidStyle = {
 export const Polaroid = ({
   className,
   data,
-  location,
+  subText,
   transform,
   isArtists,
   handleMouseEnter,
@@ -28,7 +28,7 @@ export const Polaroid = ({
   hideFooter,
 }) => {
   return (
-    <div className={"card-inner w-60 h-72" + (isHovering ? " flipped" : "")}
+    <div className={"card-inner w-56 h-56" + (isHovering ? " flipped" : "")}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -68,7 +68,7 @@ export const Polaroid = ({
         {!hideFooter && (
           <footer className="flex justify-between w-full pl-4 pr-3">
             <div className="flex justify-center items-center">
-              {iconType && <TypeIcon isArtists={isArtists} type={iconType} />}
+              {iconType && <TypeIcon isArtists={isArtists} type={iconType} className="text-primary"/>}
             </div>
             <div className="flex flex-col truncate px-3">
               <span
@@ -87,7 +87,7 @@ export const Polaroid = ({
                   fontSize: '1.2rem'
                 }}
               >
-                {location}
+                {subText}
               </span>
             </div>
             <aside className="flex justify-end items-center">
