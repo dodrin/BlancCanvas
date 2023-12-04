@@ -23,7 +23,7 @@ export default function Home({ openModal }) {
             </button>
           </div>
         </article>
-        <div className="block relative overflow-hidden rounded-full w-80 h-80">
+        <div className="block relative overflow-hidden rounded-full w-80 h-80 ml-4">
           <img
             src="/src/client/assets/hero_img.jpg"
             alt="victoria fantang alley"
@@ -78,8 +78,9 @@ export default function Home({ openModal }) {
       </section>
 
       <div className="my-20 py-20 bg-primary ">
-        <h1 className="font-heading text-3xl dark:text-white tracking-wide ">
-          Elevate Your Artistic journey in Victoria!
+        <h1 className="font-heading text-3xl dark:text-white tracking-wide whitespace-break-spaces">
+          Elevate Your Artistic journey in Victoria!<br />
+
           Ignite creativity, collaborate, and empower local artistry.</h1>
       </div>
     </div>

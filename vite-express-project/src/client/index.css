@@ -28,18 +28,18 @@
 
 @screen lg {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
 @screen xl {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
 @screen 2xl {
   html {
-    font-size: 22px
+    font-size: 20px
   }
 }
