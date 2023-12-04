@@ -94,10 +94,10 @@ export default function UserProfile() {
   }
 
   return (
-    <div className="m-10 flex flex-col justify-center items-center">
+    <div className="m-10 flex flex-col justify-center">
       {isLoggedIn && loggedInUser && user.id === loggedInUser.id && (
-        <header className="font-subHeading text-xl text-accent flex justify-between items-center px-5 pb-5">
-          My Profile
+        <header className="font-subHeading text-xl text-accent flex justify-around items-center pb-5">
+          <span>My Profile</span>
           <button className="btn btn-primary btn-outline" onClick={handleClick}>
             {editing ? "Stop Editing" : "Edit"}
           </button>
