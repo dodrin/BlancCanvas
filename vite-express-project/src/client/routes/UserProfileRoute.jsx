@@ -137,7 +137,12 @@ export default function UserProfile() {
               >
                 Profile Picture Upload
               </label>
-              <input type="file" name="image" className="mb-5 " onChange={handleFileChange} />
+              <input
+                type="file"
+                name="image"
+                className="mb-5 "
+                onChange={handleFileChange}
+              />
 
               <label
                 htmlFor="Bio"
