@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { URL_ARTISTS, TYPES_BY_URL } from "../constants";
 import { TypeIcon } from '../TypeIcon';
+import './FilterType.css';
 
 export const FilterType = ({ url, setFilterOptions }) => {
   const defaultCheckedById = useMemo(() => (
@@ -32,20 +33,27 @@ export const FilterType = ({ url, setFilterOptions }) => {
   const isArtists = url === URL_ARTISTS;
 
   return (
-      <div className="flex justify-evenly w-48 gap-0.5">
+      <div className="flex justify-evenly w-48 gap-1 relative">
         {list.map((type) => (
-          <button
-            id={type.id}
-            className="btn btn-sm px-2 py-0"
-            key={type.id}
-            onClick={handleClick}
-          >
-            <TypeIcon
-              isArtists={isArtists}
-              type={url === URL_ARTISTS ? type.id : type.name}
-              color={checkedById[type.id] ? "#e91e63" : undefined}
-            />
-          </button>
+          <div className="type-icon-container">
+            <button
+              id={type.id}
+              className="type-icon btn btn-sm px-2 py-0"
+              key={type.id}
+              onClick={handleClick}
+            >
+              <TypeIcon
+                isArtists={isArtists}
+                type={url === URL_ARTISTS ? type.id : type.name}
+                color={checkedById[type.id] ? "#e91e63" : undefined}
+              />
+            </button>
+            <div
+              className="type-tooltip"
+            >
+              {type.name}
+            </div>
+          </div>
         ))}
       </div>
   );
