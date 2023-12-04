@@ -76,7 +76,8 @@ router.get('/', async (req, res) => {
       .filter('wage', 'lt', value_under === 25100 ? 10000000 : value_under)
       .or(`name.ilike.%${search_word}%,location.ilike.%${search_word}%`)
       .range(offset, offset + limit)
-      .order(sort_attribute, { ascending: sort_direction === 'asc' });
+      .order(sort_attribute, { ascending: sort_direction === 'asc' })
+      .order('name', { ascending: true });;
 
     if (error) {
       throw error;

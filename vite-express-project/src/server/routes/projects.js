@@ -33,7 +33,8 @@ router.get("/", async (req, res) => {
       .filter('budget', 'lt', value_under === 5000100 ? 1000000000 : value_under)
       .or(`title.ilike.%${search_word}%,location.ilike.%${search_word}%`)
       .range(offset, offset + limit)
-      .order(sort_attribute, { ascending: sort_direction === 'asc' });
+      .order(sort_attribute, { ascending: sort_direction === 'asc' })
+      .order('title', { ascending: true });
 
     if (error) {
       throw error;

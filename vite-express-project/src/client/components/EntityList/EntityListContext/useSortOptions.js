@@ -13,7 +13,7 @@ export const useSortOptions = ({ url }) => {
   }, []);
 
   return {
-    sortAttribute: sortOptions.attribute || (url === URL_ARTISTS ? SORT_ATTRIBUTE.NAME : SORT_ATTRIBUTE.POSTED),
+    sortAttribute: sortOptions.attribute || (url === URL_ARTISTS ? SORT_ATTRIBUTE.LOCATION : SORT_ATTRIBUTE.POSTED),
     sortDirection: sortOptions.direction || SORT_DIRECTION.ASC,
     setSortOptions
   };
