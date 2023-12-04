@@ -38,11 +38,10 @@ export const FilterType = ({ url, setFilterOptions }) => {
   return (
       <div className="flex justify-evenly w-48 gap-1 relative">
         {list.map((type) => (
-          <div className="type-icon-container">
+          <div key={type.id} className="type-icon-container">
             <button
               id={type.id}
               className="type-icon btn btn-sm px-2 py-0"
-              key={type.id}
               onClick={handleClick}
             >
               <TypeIcon

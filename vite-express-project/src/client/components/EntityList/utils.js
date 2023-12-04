@@ -39,18 +39,18 @@ export const getPortfolioHoverPosition = (overlayNumber, columnIndex) => {
     case 0:
       return {
         left: columnIndex === 0
-          ? "340px"
+          ? "17.2rem"
           : columnIndex === 1
-          ? "-240px"
-          : "-540px"
+          ? "-12rem"
+          : "-27rem"
       };
     case 1:
       return {
         left: columnIndex === 0
-          ? "630px"
+          ? "32rem"
           : columnIndex === 1
-          ? "340px"
-          : "-240px"
+          ? "17.2rem"
+          : "-12rem"
       };
     default:
       return {

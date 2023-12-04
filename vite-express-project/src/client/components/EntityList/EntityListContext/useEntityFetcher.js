@@ -32,8 +32,6 @@ export const useEntityFetcher = ({
     async (offset, { sortAttribute, sortDirection, selectedTypeById, valueUnder, searchWord } = {}) => {
       setState((prev) => ({ ...prev, isFetching: true }));
 
-      console.log(selectedTypeById);
-
       const params = {
         offset,
         limit: ITEMS_PER_LOAD,
