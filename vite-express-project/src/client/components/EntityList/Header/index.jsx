@@ -16,15 +16,9 @@ export const Header = ({ url }) => {
       </style>
       <header 
         id="entity-list-header"
-        className="entity-list-header flex items-center p-6"
+        className="entity-list-header flex items-center p-10 pb-2"
       >
-        {/* <h1
-          id="entity-list-title"
-          className="font-subHeading text-lg font-semibold leading-6 text-accent"
-        >
-          {title} in your area
-        </h1> */}
-        <aside className="w-full flex gap-4 justify-center pl-2 pr-4">
+        <aside className="w-full flex gap-8 justify-center pl-2 pr-4">
           <SortOptions url={url} />
           <FilterOptions url={url} />
         </aside>

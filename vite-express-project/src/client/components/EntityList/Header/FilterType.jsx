@@ -32,7 +32,7 @@ export const FilterType = ({ url, setFilterOptions }) => {
   const isArtists = url === URL_ARTISTS;
 
   return (
-      <div className="flex justify-evenly items-center w-48 gap-0.5">
+      <div className="flex justify-evenly w-48 gap-0.5">
         {list.map((type) => (
           <button
             id={type.id}

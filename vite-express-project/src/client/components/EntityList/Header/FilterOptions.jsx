@@ -8,7 +8,7 @@ export const FilterOptions = ({ url }) => {
 
   return (
     <div className="flex w-full justify-between">
-      <div className="flex gap-3">
+      <div className="flex gap-8">
         <FilterType
           url={url}
           selectedTypeById={selectedTypeById}
