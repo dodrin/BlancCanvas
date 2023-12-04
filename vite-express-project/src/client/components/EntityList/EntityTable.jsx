@@ -167,7 +167,8 @@ export const EntityTable = ({ url, likesData }) => {
                         totalCount,
                         isInitial,
                         isArtists: url === URL_ARTISTS,
-                        likesData
+                        likesData,
+                        sortAttribute
 
                       })}
                     </VariableSizeGrid>

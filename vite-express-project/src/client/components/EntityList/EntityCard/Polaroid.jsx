@@ -8,7 +8,7 @@ const polaroidStyle = {
 export const Polaroid = ({
   className,
   data,
-  location,
+  subText,
   transform,
   isArtists,
   handleMouseEnter,
@@ -28,7 +28,7 @@ export const Polaroid = ({
   hideFooter,
 }) => {
   return (
-    <div className={"card-inner" + (isHovering ? " flipped" : "")}
+    <div className={"card-inner w-56 h-56" + (isHovering ? " flipped" : "")}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -36,8 +36,6 @@ export const Polaroid = ({
         transformStyle: 'preserve-3d',
         transformOrigin: 'center center',
         position: 'relative',
-        width: '300px',
-        height: '360px',
         zIndex: isHovering ? 10 : 4,
         fontFamily: "'Kalam', cursive",
         fontSize: '1.2rem'
@@ -70,7 +68,7 @@ export const Polaroid = ({
         {!hideFooter && (
           <footer className="flex justify-between w-full pl-4 pr-3">
             <div className="flex justify-center items-center">
-              {iconType && <TypeIcon isArtists={isArtists} type={iconType} />}
+              {iconType && <TypeIcon isArtists={isArtists} type={iconType} className="text-primary"/>}
             </div>
             <div className="flex flex-col truncate px-3">
               <span
@@ -89,7 +87,7 @@ export const Polaroid = ({
                   fontSize: '1.2rem'
                 }}
               >
-                {location}
+                {subText}
               </span>
             </div>
             <aside className="flex justify-end items-center">
@@ -116,8 +114,8 @@ export const Polaroid = ({
           }}
         >
           <div
-            className="flex flex-col justify-evenly p-4"
-            style={{ width: '280px', height: '280px', backgroundColor: "#c0c0c0"
+            className="flex flex-col justify-evenly p-4 w-56 h-56"
+            style={{ backgroundColor: "#c0c0c0"
           }}>
             <div
               className="flex flex-col justify-center items-center"

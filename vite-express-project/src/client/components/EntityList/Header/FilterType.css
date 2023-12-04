@@ -1,0 +1,13 @@
+.type-icon-container:hover > .type-tooltip {
+  display: block;
+}
+
+.type-tooltip {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  width: 200px;
+}

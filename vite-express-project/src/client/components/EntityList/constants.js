@@ -1,3 +1,5 @@
+import { artistType, projectType } from "../../constants/TypeSelections";
+
 export const ITEM_SIZE = 300;
 export const ROW_HEIGHT = 450;
 export const ROW_HEIGHT_CURRENT_LAST = 390;
@@ -57,18 +59,14 @@ export const SORT_DIRECTION = {
 };
 
 export const artistsSortAttributes = [
-  SORT_ATTRIBUTE.NAME,
   SORT_ATTRIBUTE.LOCATION,
-  SORT_ATTRIBUTE.WAGE,
-  SORT_ATTRIBUTE.ARTIST_TYPE
+  SORT_ATTRIBUTE.WAGE
 ];
 
 export const gigsSortAttributes = [
   SORT_ATTRIBUTE.POSTED,
-  SORT_ATTRIBUTE.TITLE,
   SORT_ATTRIBUTE.LOCATION,
-  SORT_ATTRIBUTE.BUDGET,
-  SORT_ATTRIBUTE.GIG_TYPE
+  SORT_ATTRIBUTE.BUDGET
 ];
 
 export const SORT_ATTRIBUTE_BY_URL = {
@@ -95,4 +93,9 @@ export const PRICE_BY_URL = {
     min: BUDGET_MIN,
     max: BUDGET_MAX
   }
+};
+
+export const TYPES_BY_URL = {
+  [URL_ARTISTS]: artistType.slice(1),
+  [URL_GIGS]: projectType.slice(1),
 };

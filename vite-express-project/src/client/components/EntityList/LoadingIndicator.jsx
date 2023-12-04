@@ -1,4 +1,5 @@
-import './LoadingIndicator.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const loadingWheelStyle = {
   position: 'absolute',
@@ -15,15 +16,7 @@ export const LoadingIndicator = ({ style }) => {
       style={{ ...style, ...loadingWheelStyle }}
       className="loading-indicator"
     >
-      <img
-        className="loading-indicator__image"
-        src="../../assets/spinner-solid.svg"
-        alt="SVG"
-        style={{
-          height: '50px',
-          width: '50px',
-        }}
-      />
+      <FontAwesomeIcon icon={faSpinner} spin size="3x" className="text-primary" />
     </div>
   )
 };
