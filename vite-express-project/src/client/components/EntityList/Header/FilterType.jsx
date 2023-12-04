@@ -2,12 +2,15 @@ import { useState, useCallback, useMemo } from 'react';
 import { URL_ARTISTS, TYPES_BY_URL } from "../constants";
 import { TypeIcon } from '../TypeIcon';
 import './FilterType.css';
+import { useTheme } from '../../../hooks/ThemeContext';
 
 export const FilterType = ({ url, setFilterOptions }) => {
   const defaultCheckedById = useMemo(() => (
     TYPES_BY_URL[url].reduce((selectedTypeById, type) => ({ ...selectedTypeById, [type.id]: true }), {})
   ), [url]);
   const [checkedById, setCheckedById] = useState(defaultCheckedById)
+
+  const { theme } = useTheme();
 
   const list = useMemo(() => TYPES_BY_URL[url], [url]);
 
@@ -45,7 +48,9 @@ export const FilterType = ({ url, setFilterOptions }) => {
               <TypeIcon
                 isArtists={isArtists}
                 type={url === URL_ARTISTS ? type.id : type.name}
-                color={checkedById[type.id] ? "#e91e63" : undefined}
+                className={ checkedById[type.id]
+                  ? theme === 'black' ? 'text-white' : 'text-primary'
+                  : 'text-default opacity-20'}
               />
             </button>
             <div

@@ -30,8 +30,9 @@ const MAP_PROJECT_TYPE_TO_ICON = {
   [projectType[6].name]: faPlus
 }
 
-export const TypeIcon = ({ isArtists, type, size, color, effect = {} }) => (
+export const TypeIcon = ({ className, isArtists, type, size, color, effect = {} }) => (
   <FontAwesomeIcon
+    className={className}
     icon={
       isArtists
         ? MAP_ARTIST_TYPE_TO_ICON[type]
