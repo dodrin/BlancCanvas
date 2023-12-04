@@ -91,7 +91,7 @@ export default function UserProfile() {
   return (
     <div className="m-10 flex flex-col justify-center items-center">
       {isLoggedIn && loggedInUser && user.id === loggedInUser.id && (
-        <header className="font-subHeading text-xl text-accent flex justify-around items-center px-5 pb-5">
+        <header className="font-subHeading text-xl text-accent flex justify-between items-center px-5 pb-5">
           My Profile
           <button
             className="btn btn-primary btn-outline"
