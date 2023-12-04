@@ -1,9 +1,11 @@
 import { SortOptions } from './SortOptions';
 import { FilterOptions } from './FilterOptions';
-import { TITLE_BY_URL } from '../constants';
+import { useEntityContext } from '../EntityListContext';
+import { FilterWord } from './FilterWord';
 
 export const Header = ({ url }) => {
-  const title = TITLE_BY_URL[url];
+  const { setFilterOptions, selectedTypeById } = useEntityContext();
+
   return (
     <>
       {/* to override root's bottom padding */}
@@ -16,12 +18,17 @@ export const Header = ({ url }) => {
       </style>
       <header 
         id="entity-list-header"
-        className="entity-list-header flex items-center p-10 pb-2"
+        className="entity-list-header justify-around flex pt-10 pb-2"
       >
-        <aside className="w-full flex gap-8 justify-center pl-2 pr-4">
-          <SortOptions url={url} />
-          <FilterOptions url={url} />
-        </aside>
+        <SortOptions url={url} />
+        <FilterOptions
+          url={url}
+          selectedTypeById={selectedTypeById}
+          setFilterOptions={setFilterOptions}
+        />
+        <FilterWord
+          setFilterOptions={setFilterOptions}
+        />
       </header>
     </>
   );

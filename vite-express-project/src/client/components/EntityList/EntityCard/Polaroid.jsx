@@ -28,7 +28,7 @@ export const Polaroid = ({
   hideFooter,
 }) => {
   return (
-    <div className={"card-inner" + (isHovering ? " flipped" : "")}
+    <div className={"card-inner w-60 h-72" + (isHovering ? " flipped" : "")}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -36,8 +36,6 @@ export const Polaroid = ({
         transformStyle: 'preserve-3d',
         transformOrigin: 'center center',
         position: 'relative',
-        width: '300px',
-        height: '360px',
         zIndex: isHovering ? 10 : 4,
         fontFamily: "'Kalam', cursive",
         fontSize: '1.2rem'
