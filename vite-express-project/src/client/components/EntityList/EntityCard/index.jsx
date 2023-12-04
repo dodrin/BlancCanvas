@@ -24,7 +24,8 @@ export const EntityCard = ({
   data,
   isArtists,
   columnIndex,
-  likesData
+  likesData,
+  sortAttribute,
 }) => {
   const [isLiked, setLiked] = useState(false);
   const navigate = useNavigate();
@@ -69,6 +70,10 @@ export const EntityCard = ({
     [numberOfPortfolios]
   );
 
+  const isSubTextMoney = (sortAttribute === 'wage' || sortAttribute === 'budget');
+  const isSubTextDate = sortAttribute === 'created_at';
+  const isVolunteer = isSubTextMoney && data[sortAttribute] === 0;
+
   return (
     <div
       className={"entity-card-container" + (isHovering ? " is-hovering" : "")}
@@ -79,7 +84,12 @@ export const EntityCard = ({
     >
       <Polaroid
         data={data}
-        location={data.location}
+        subText={
+          isSubTextMoney
+            ? isVolunteer ? 'Volunteer' : `$${(data[sortAttribute] / 100).toFixed(2)}`
+            : isSubTextDate
+            ? new Date(data[sortAttribute]).toLocaleDateString()
+            : data[sortAttribute]}
         transform={data.transform}
         zIndex={isHovering ? 20 : 4}
         isArtists={isArtists}

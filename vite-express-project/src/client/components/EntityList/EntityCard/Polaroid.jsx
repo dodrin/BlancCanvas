@@ -8,7 +8,7 @@ const polaroidStyle = {
 export const Polaroid = ({
   className,
   data,
-  location,
+  subText,
   transform,
   isArtists,
   handleMouseEnter,
@@ -89,7 +89,7 @@ export const Polaroid = ({
                   fontSize: '1.2rem'
                 }}
               >
-                {location}
+                {subText}
               </span>
             </div>
             <aside className="flex justify-end items-center">

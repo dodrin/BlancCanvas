@@ -10,7 +10,8 @@ export const getColumnComponent = ({
   totalCount,
   isArtists,
   isInitial,
-  likesData
+  likesData,
+  sortAttribute
 }) => ({
   columnIndex,
   rowIndex,
@@ -30,6 +31,7 @@ export const getColumnComponent = ({
         isArtists={isArtists}
         columnIndex={columnIndex}
         likesData={likesData}
+        sortAttribute={sortAttribute}
       />
     : isLoadingRow && isFirstColumn && isFetching && (isInitial || !isLoadedAll)
     ? <LoadingIndicator style={style} />
