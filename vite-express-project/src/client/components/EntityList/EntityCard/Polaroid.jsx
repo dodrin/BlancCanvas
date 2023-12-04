@@ -117,7 +117,7 @@ export const Polaroid = ({
         >
           <div
             className="flex flex-col justify-evenly p-4"
-            style={{ width: '252px', height: '280px', backgroundColor: "#c0c0c0"
+            style={{ width: '252px', height: '252px', backgroundColor: "#c0c0c0"
           }}>
             <div
               className="flex flex-col justify-center items-center"
