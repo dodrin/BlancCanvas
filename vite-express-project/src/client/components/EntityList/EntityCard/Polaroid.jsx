@@ -70,7 +70,7 @@ export const Polaroid = ({
         {!hideFooter && (
           <footer className="flex justify-between w-full pl-4 pr-3">
             <div className="flex justify-center items-center">
-              {iconType && <TypeIcon isArtists={isArtists} type={iconType} />}
+              {iconType && <TypeIcon isArtists={isArtists} type={iconType} className="text-primary"/>}
             </div>
             <div className="flex flex-col truncate px-3">
               <span
@@ -117,7 +117,7 @@ export const Polaroid = ({
         >
           <div
             className="flex flex-col justify-evenly p-4"
-            style={{ width: '280px', height: '280px', backgroundColor: "#c0c0c0"
+            style={{ width: '252px', height: '280px', backgroundColor: "#c0c0c0"
           }}>
             <div
               className="flex flex-col justify-center items-center"
