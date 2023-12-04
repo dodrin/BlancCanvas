@@ -56,5 +56,5 @@ npm run dev
 
 Our application uses [Supabase](https://supabase.io/) as the database. Supabase provides a powerful and scalable solution for managing data.
 
-For the setup please refer to [the database documentation](/docs/database.md).
+For the setup please refer to [the database documentation](/vite-express-project/docs/database.md).
 
