@@ -1,13 +1,17 @@
 import { useCallback } from "react";
 import { useAuth } from "../hooks/AuthContext";
 import LoginModal from "./LoginModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ThemeController from "./ThemeController";
 import DropDownUser from "./DropDownUser/DropDownUser";
 
 export default function NavBar({ openModal }) {
   const { isLoggedIn, logout, user } = useAuth();
 
+  const location = useLocation();
+  const splitLocation = location.pathname.split("/");
+  const path = splitLocation[splitLocation.length - 1];
+  
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -35,12 +39,16 @@ export default function NavBar({ openModal }) {
       <div>
         <ul className="flex space-x-6">
           <li className="group inline-block relative">
-            <button className="inline-flex items-center ">
+            <button className="inline-flex items-center">
               <span
-                className="font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content
-                  uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]"
+                className={
+                  "font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content" +
+                  " uppercase mx-9 px-1 transition-all duration-500 before:content-[none] after:content-[none]" + (path.includes("artists") ? " border-b-2" : "")
+                }
               >
-                Find Artists
+                <a href="/artists">
+                  Find Artists
+                </a>
               </span>
             </button>
             <ul className="dropdown-menu absolute hidden text-primary pt-1 mx-5 group-hover:block z-50 pl-2">
@@ -66,8 +74,10 @@ export default function NavBar({ openModal }) {
           <li>
             <a
               href="/gigs"
-              className="font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content
-              uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]"
+              className={
+                "font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content" +
+                " uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]" + (path.includes("gigs") ? " border-b-2" : "")
+              }
             >
               Find Gigs
             </a>
