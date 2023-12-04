@@ -28,8 +28,8 @@ export const FilterWage = ({ url, setFilterOptions }) => {
         }}
       >
         {value === PRICE_BY_URL[url].max
-          ? `Show me all the ${DEFAULT_LABEL_BY_URL[url].toLowerCase()}s`
-          : `I'd like to see ${DEFAULT_LABEL_BY_URL[url].toLowerCase()}s up to $${value}`}
+          ? `All ${DEFAULT_LABEL_BY_URL[url]}s`
+          : `${DEFAULT_LABEL_BY_URL[url]} up to $${value}`}
       </label>
     </div>
   );

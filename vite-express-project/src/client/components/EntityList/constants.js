@@ -80,8 +80,8 @@ export const BUDGET_MIN = 100;
 export const BUDGET_MAX = 5001;
 
 export const DEFAULT_LABEL_BY_URL = {
-  [URL_ARTISTS]: 'WAGE',
-  [URL_GIGS]: 'BUDGET'
+  [URL_ARTISTS]: 'Wage',
+  [URL_GIGS]: 'Budget'
 };
 
 export const PRICE_BY_URL = {
