@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useAuth } from "../hooks/AuthContext";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { LoadingIndicator } from "../components/EntityList/LoadingIndicator";
@@ -17,10 +17,24 @@ export default function UserProfile() {
   const [editing, setEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({});
   const { fetchUser, updateUser } = useUserProfile(id, setUser);
+
+  const [banner, setBanner] = useState(false);
+
+  const location = useLocation();
+  const parms = new URLSearchParams(location.search);
+  const trigger = parms.get("trigger");
+
+  useUserProfile(id, setUser);
+
+  useEffect(() => {
+    if (trigger === "false") {
+      setEditing(true);
+    }
+  }, [trigger]);
+
   const [file, setFile] = useState([]);
   const fileLocation = `/uploads/${file.name}`;
 
-  useUserProfile(id, setUser);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -59,10 +73,13 @@ export default function UserProfile() {
         profile_picture: file
           ? fileLocation
           : editedUser.profile_picture || user.profile_picture,
+          flag: true,
+
       };
 
       await updateUser(updatedData);
       setEditing(false);
+      setBanner(true);
     } catch (error) {
       console.error("Error updating user:", error);
     }
@@ -94,7 +111,18 @@ export default function UserProfile() {
   }
 
   return (
-    <div className="m-10 flex flex-col justify-center">
+
+    <div className="m-16 flex flex-col justify-center">
+      {isLoggedIn &&
+        trigger === "false" &&
+        !banner && ( // Check if user is logged in and trigger is false
+          <div className="bg-red-500 text-white px-4 py-2">
+            Please complete your profile, before continuing. (This message will
+            disappear once you have completed your profile)
+          </div>
+        )}
+
+
       {isLoggedIn && loggedInUser && user.id === loggedInUser.id && (
         <header className="font-subHeading text-xl text-accent flex justify-around items-center pb-5">
           <span>My Profile</span>
@@ -219,7 +247,9 @@ export default function UserProfile() {
 
       <section className="flex flex-col justify-center items-center">
         <h2 className="font-heading text-2xl m-5 pt-5">My Projects</h2>
+
         {user && <ImageCarousel images={user.images} />}
+
       </section>
     </div>
   );

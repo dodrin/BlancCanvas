@@ -49,6 +49,7 @@ router.post("/upload", type, async (req, res) => {
   }
 });
 
+
 router.get('/', async (req, res) => {
   const {
     offset: _offset,
@@ -68,6 +69,7 @@ router.get('/', async (req, res) => {
 
   const selectedTypeIds = typeof selected_type_ids === 'string' ? [selected_type_ids] : selected_type_ids;
 
+
   try {
     const { data, count, error } = await supabase
       .from("users")
@@ -78,6 +80,7 @@ router.get('/', async (req, res) => {
       .range(offset, offset + limit)
       .order(sort_attribute, { ascending: sort_direction === 'asc' })
       .order('name', { ascending: true });;
+
 
     if (error) {
       throw error;
@@ -115,6 +118,7 @@ router.get("/:id", async (req, res) => {
 
 // Adds a new user to users table in supabase
 router.post("/", async (req, res) => {
+
   try {
     console.log("Request Body:", req.body);
 
@@ -151,6 +155,7 @@ router.post("/", async (req, res) => {
     console.error("Server Error:", error);
     res.status(500).send("Server Error: " + error.message);
   }
+
 });
 
 
