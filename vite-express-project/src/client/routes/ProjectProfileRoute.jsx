@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNewProject } from "../hooks/NewProjectContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/AuthContext";
- 
+
 function convertRate(cents) {
   const dollars = cents / 100;
   return dollars.toFixed(2);
@@ -16,12 +16,14 @@ export default function ProjectProfile() {
   const { setIsEditMode } = useNewProject();
   const navigate = useNavigate();
   const { loggedInUser } = useAuth();
-  
+
   const handleEditClick = async (projectId) => {
     setIsEditMode(true);
-    navigate(`/projects/${projectId}/edit`, { state: { projectData: project } });
+    navigate(`/projects/${projectId}/edit`, {
+      state: { projectData: project },
+    });
   };
-  
+
   useEffect(() => {
     const fetchProject = async () => {
       try {
@@ -48,8 +50,7 @@ export default function ProjectProfile() {
       }
     };
     fetchUser();
-  }
-  , [project]);
+  }, [project]);
 
   return (
     <div className="mb-48">
@@ -64,11 +65,10 @@ export default function ProjectProfile() {
 
         <div className="flex flex-col justify-start h-full w-72 m-10">
           <header className="mt-5 font-heading text-3xl text-primary ">
-          {project.title}
+            {project.title}
           </header>
           <main className="flex">
             <div className="m-5">
-              
               <div className="flex flex-row items-center">
                 <img
                   src={`${users.profile_picture}`} //change to project.image when ready
@@ -84,28 +84,42 @@ export default function ProjectProfile() {
                   <span>Project Type: {project.type}</span>
                   <span>Location: {project.location}</span>
                   <span>Budget: ${convertRate(project.budget)}</span>
+                  <br />
+
+                  <div className="collapse bg-base-200">
+                    <input type="checkbox" className="peer" />
+                    <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content p-4">
+                      Press for contact info
+                    </div>
+                    <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                      <p>
+                        Please feel free to contact this employer via email:
+                        <br />
+                        <br />
+                        {users.email}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
             </div>
           </main>
           <div className="mt-5">
             <p>{project.description}</p>
           </div>
-          
         </div>
       </div>
-      
-      { loggedInUser && loggedInUser.id === project.employer_id && (
+
+      {loggedInUser && loggedInUser.id === project.employer_id && (
         <div className="flex justify-end m-5">
-          <button 
+          <button
             className="btn btn-outline btn-secondary"
-            onClick={() => handleEditClick(id)}>
+            onClick={() => handleEditClick(id)}
+          >
             Edit project
           </button>
         </div>
       )}
     </div>
-    
   );
 }
