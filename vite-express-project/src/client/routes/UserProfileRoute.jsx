@@ -139,15 +139,10 @@ export default function UserProfile() {
                 Profile Picture Upload
               </label>
               <input
-               
                 type="file"
-               
                 name="image"
-               
                 className="file-input file-input-bordered w-full max-w-xs mb-5"
-               
                 onChange={handleFileChange}
-             
               />
 
               <label
@@ -205,6 +200,20 @@ export default function UserProfile() {
           <span className="text-accent">
             Rate: ${convertRate(user.wage)} / hour
           </span>
+          <div className="collapse bg-base-200 mt-5">
+            <input type="checkbox" className="peer" />
+            <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content p-4">
+              Press for contact info
+            </div>
+            <div className="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+              <p>
+                Please feel free to contact this employer via email:
+                <br />
+                <br />
+                {user.email}
+              </p>
+            </div>
+          </div>
         </div>
       </main>
 
