@@ -17,20 +17,25 @@ export const FilterType = ({ url, setFilterOptions }) => {
   const handleClick = useCallback((event) => {
     const { id } = event.currentTarget;
 
+    const isPrevAllSelected = list.every(({ id }) => checkedById[id]);
+
     const nextState = { ...checkedById, [id]: !checkedById[id] };
-    const isAllChecked = list.every(({ id }) => nextState[id]);
+    const isNothingSelected = list.every(({ id }) => !nextState[id]);
 
     // we store selected ids here and in useFilterOptions hook differently
     // the reason why we have separate states for the same data
     // is because we want to display checked items right away when user clicks them
     // but we don't want to fetch data every time user clicks something so we debounce them
-    if (isAllChecked) {
+    if (isPrevAllSelected) {
+      setFilterOptions({ selectedTypeById: { [id]: true } });
+      setCheckedById({ [id]: true });
+    } else if (isNothingSelected) {
       setFilterOptions({ selectedTypeById: defaultCheckedById });
+      setCheckedById(defaultCheckedById);
     } else {
-      setFilterOptions({ selectedTypeById: nextState });
+      setFilterOptions({ selectedTypeById: nextState})
       setCheckedById(nextState);
     }
-    setCheckedById(nextState);
   }, [list, setFilterOptions, checkedById]);
 
   const isArtists = url === URL_ARTISTS;
