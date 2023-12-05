@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useCallback } from "react";
 import { useAuth } from "../hooks/AuthContext";
 import LoginModal from "./LoginModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ThemeController from "./ThemeController";
 import DropDownUser from "./DropDownUser/DropDownUser";
 
 export default function NavBar({ openModal }) {
-  const { isLoggedIn, login, logout, user } = useAuth();
-  // console.log(isLoggedIn, user);
+  const { isLoggedIn, logout, user } = useAuth();
 
+  const location = useLocation();
+  const splitLocation = location.pathname.split("/");
+  const path = splitLocation[splitLocation.length - 1];
+  
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,34 +19,76 @@ export default function NavBar({ openModal }) {
     navigate("/");
   };
 
+  const handleClickLogo = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
+
   const menu = [
     { name: "Find Artists", href: "/artists" },
     { name: "Find Gigs", href: "/gigs" },
   ];
 
   return (
-    <nav className="flex flex-wrap items-center justify-around p-4">
-      <span className="font-heading text-4xl whitespace-nowrap">LOGO</span>
+    <nav className="flex flex-wrap items-center justify-around ">
+      <span
+        className="text-primary font-heading text-4xl font-semibold tracking-wider whitespace-nowrap cursor-pointer flex items-center"
+        onClick={handleClickLogo}
+      >
+        Blanc Canvas
+      </span>
       <div>
         <ul className="flex space-x-6">
-          {menu.map((item) => (
+          <li className="group inline-block relative">
+            <button className="inline-flex items-center">
+              <span
+                className={
+                  "font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content" +
+                  " uppercase mx-9 px-1 transition-all duration-500 before:content-[none] after:content-[none]" + (path.includes("artists") ? " border-b-2" : "")
+                }
+              >
+                <a href="/artists">
+                  Find Artists
+                </a>
+              </span>
+            </button>
+            <ul className="dropdown-menu absolute hidden text-primary pt-1 mx-5 group-hover:block z-50 pl-2">
+              <li className="z-100">
+                <a
+                  className="bg-base-100 font-subHeading font-semibold tracking-wider hover:text-primary-content py-4 px-4 block whitespace-no-wrap transition-all duration-500 before:content-[none] after:content-[none]"
+                  href="/artists"
+                >
+                  Browse Talents
+                </a>
+              </li>
+              <li className="z-100">
+                <a
+                  className="bg-base-100 font-subHeading font-semibold tracking-wider hover:text-primary-content py-4 px-4 block whitespace-no-wrap transition-all duration-500 before:content-[none] after:content-[none]"
+                  href="/projects/new"
+                >
+                  Create Posts
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
             <a
-              key={item.name}
-              href={item.href}
-              className="font-subHeading text-lg font-semibold leading-6 hover:text-primary-content
-              uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]"
+              href="/gigs"
+              className={
+                "font-subHeading text-lg font-semibold tracking-wider leading-6 hover:text-primary-content" +
+                " uppercase mx-10 transition-all duration-500 before:content-[none] after:content-[none]" + (path.includes("gigs") ? " border-b-2" : "")
+              }
             >
-              {item.name}
+              Find Gigs
             </a>
-          ))}
+          </li>
         </ul>
       </div>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 items-center">
         <ThemeController />
         {/* Conditionally render different buttons based on the isLoggedIn state */}
         {isLoggedIn ? (
           <>
-          
             <DropDownUser />
 
             <button

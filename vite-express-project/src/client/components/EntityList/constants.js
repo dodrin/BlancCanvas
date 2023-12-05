@@ -1,3 +1,5 @@
+import { artistType, projectType } from "../../constants/TypeSelections";
+
 export const ITEM_SIZE = 300;
 export const ROW_HEIGHT = 450;
 export const ROW_HEIGHT_CURRENT_LAST = 390;
@@ -27,4 +29,73 @@ export const API_GIGS = 'api/projects';
 export const API_BY_URL = {
   [URL_ARTISTS]: API_ARTISTS,
   [URL_GIGS]: API_GIGS
+};
+
+export const SORT_ATTRIBUTE = {
+  NAME: 'name',
+  TITLE: 'title',
+  LOCATION: 'location',
+  WAGE: 'wage',
+  ARTIST_TYPE: 'artist_type',
+  GIG_TYPE: 'type',
+  BUDGET: 'budget',
+  POSTED: 'created_at'
+};
+
+export const SORT_ATTRIBUTE_DISPLAY_NAME = {
+  [SORT_ATTRIBUTE.NAME]: 'NAME',
+  [SORT_ATTRIBUTE.TITLE]: 'TITLE',
+  [SORT_ATTRIBUTE.LOCATION]: 'LOCATION',
+  [SORT_ATTRIBUTE.WAGE]: 'WAGE',
+  [SORT_ATTRIBUTE.ARTIST_TYPE]: 'TYPE',
+  [SORT_ATTRIBUTE.GIG_TYPE]: 'TYPE',
+  [SORT_ATTRIBUTE.BUDGET]: 'BUDGET',
+  [SORT_ATTRIBUTE.POSTED]: 'POSTED'
+}
+
+export const SORT_DIRECTION = {
+  ASC: 'asc',
+  DESC: 'desc'
+};
+
+export const artistsSortAttributes = [
+  SORT_ATTRIBUTE.LOCATION,
+  SORT_ATTRIBUTE.WAGE
+];
+
+export const gigsSortAttributes = [
+  SORT_ATTRIBUTE.POSTED,
+  SORT_ATTRIBUTE.LOCATION,
+  SORT_ATTRIBUTE.BUDGET
+];
+
+export const SORT_ATTRIBUTE_BY_URL = {
+  [URL_ARTISTS]: artistsSortAttributes,
+  [URL_GIGS]: gigsSortAttributes
+};
+
+export const WAGE_MIN = 10;
+export const WAGE_MAX = 251;
+export const BUDGET_MIN = 100;
+export const BUDGET_MAX = 5001;
+
+export const DEFAULT_LABEL_BY_URL = {
+  [URL_ARTISTS]: 'Wage',
+  [URL_GIGS]: 'Budget'
+};
+
+export const PRICE_BY_URL = {
+  [URL_ARTISTS]: {
+    min: WAGE_MIN,
+    max: WAGE_MAX
+  },
+  [URL_GIGS]: {
+    min: BUDGET_MIN,
+    max: BUDGET_MAX
+  }
+};
+
+export const TYPES_BY_URL = {
+  [URL_ARTISTS]: artistType.slice(1),
+  [URL_GIGS]: projectType.slice(1),
 };

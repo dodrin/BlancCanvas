@@ -2,8 +2,8 @@ import TypeSelectionBox from "../components/TypeSelectionBox";
 import { useNewProject } from "../hooks/NewProjectContext";
 import { useAuth } from "../hooks/AuthContext";
 import InputField from "../components/InputField";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
 export default function NewProjectFormRoute() {
   const {
@@ -15,6 +15,7 @@ export default function NewProjectFormRoute() {
     handleFileChange,
     handleProjectTypeForm,
     handleSubmit,
+    handleEditSubmit,
     selectedProject,
     filteredProjectType,
     projectTypeQuery,
@@ -29,8 +30,38 @@ export default function NewProjectFormRoute() {
     isEditMode,
   } = useNewProject();
 
-  const { user, checkAuthentication, isLoading } = useAuth();
+  const { loggedInUser, checkAuthentication, isLoading } = useAuth();
   const { projectId } = useParams();
+  
+  const location = useLocation();
+  const { state } = location;
+  const projectData = state && state.projectData;
+
+  const initialFormData = projectData
+    ? {
+        projectName: projectData.title,
+        description: projectData.description,
+        budget: projectData.budget / 100, 
+        location: projectData.location,
+        projectType: projectData.type,
+        image: null, 
+      }
+    : {
+        projectName: "",
+        description: "",
+        budget: 10,
+        location: "",
+        projectType: "",
+        image: null,
+      };
+  
+  const [initialForm, setInitialForm] = useState(initialFormData);
+  
+  useEffect(() => {
+    setFormData(initialForm);
+  }, [initialForm]);
+  
+  console.log(projectData);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -42,32 +73,34 @@ export default function NewProjectFormRoute() {
     fetchData();
   }, [checkAuthentication]);
 
-  const employer_id = user ? user.id : null;
+  const employer_id = loggedInUser ? loggedInUser.id : null;
 
   if (isLoading) {
     return <div className="m-20">Loading...</div>;
   };
 
-  if (!user) {
+  if (!loggedInUser) {
     return (
-      <div className="m-20">
-        <p>You must log in to access this page.</p>
+      <div className="m-36">
+        <p className="text-subHeading ">You must log in to access this page.</p>
       </div>
     );
   };
 
   return (
-    <div className="m-5 mb-72">
-      <div className="mb-5">
+    <div className="m-5 mb-36">
+      <div className="mb-5 flex flex-col justify-center items-center">
         <h2 className="text-xl font-subHeading text-secondary">
           {isEditMode ? ( <>Edit Project</> ) : ( <>Create a New Project</> )}
         </h2>
+        <p className="font-bodyFont w-96 m-7 leading-7">
+        "Whether you're seeking local artistic talent or you're an artist looking for a collaborative buddy,
+        this is the perfect platform to foster connections between artists and the local community!"
+        </p>
       </div>
-      <form onSubmit={(e) => handleSubmit(e, projectId, employer_id)}>
+      <form onSubmit={(e) => (isEditMode ? handleEditSubmit(e, projectId, employer_id) : handleSubmit(e, employer_id))}>
         <div className="flex justify-center items-start">
-          
-          <div className="relative">
-            
+          { !isEditMode && <div className="relative">
             <label className="border-solid border rounded-lg w-56 h-56 m-5 flex items-center justify-center text-white cursor-pointer relative">
               {!imagePreview && (
                 <input
@@ -86,7 +119,6 @@ export default function NewProjectFormRoute() {
                 />
               ) : (
                 <svg xmlns="http://www.w3.org/2000/svg" height="7em" viewBox="0 0 512 512" fill="#F27F3D">
-                  {/*<!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->*/}
                   <path d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/>
                 </svg>
               )}
@@ -111,7 +143,7 @@ export default function NewProjectFormRoute() {
                 </span> 
               </button>
             )}
-          </div>
+          </div>}
 
           <div className="flex flex-col items-center justify-center m-5 mt-0">
             <InputField
@@ -160,11 +192,10 @@ export default function NewProjectFormRoute() {
               filteredType={filteredProjectType}
               query={projectTypeQuery}
               setQuery={setProjectTypeQuery} />
-
           </div>
         </div>
         <button className="btn btn-primary text-white" type="submit">
-        {isEditMode ? "Update Project" : "Post Project"}
+          {isEditMode ? "Update Project" : "Post Project"}
         </button>
       </form>
     </div>
