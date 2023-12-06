@@ -32,8 +32,8 @@ export default function UserProfile() {
     }
   }, [trigger]);
 
-  const [file, setFile] = useState([]);
-  const fileLocation = `/uploads/${file.name}`;
+  const [file, setFile] = useState(null);
+  const fileLocation = file ? `/uploads/${file.name}` : null;
 
 
   const handleFileChange = (event) => {
@@ -45,7 +45,10 @@ export default function UserProfile() {
       const formData = new FormData();
       formData.append("image", file);
       formData.append("id", user.id);
-      formData.append("file_name", file.name);
+
+      if (file) {
+        formData.append("file_name", file.name);
+      }
 
       console.log("File out:", file);
       console.log("Form data:", formData);
