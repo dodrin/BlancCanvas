@@ -63,13 +63,13 @@ const DropDownUser = () => {
         <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg">
           <ul>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-              <Link to={`/users/${loggedInUser.id}`}>My Profile</Link>
+              <Link to={`/users/${loggedInUser.id}`} onClick={toggleDropdown}>My Profile</Link>
             </li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-              <Link to={`/likeditems/${loggedInUser.id}`}>My Liked Items</Link>
+              <Link to={`/likeditems/${loggedInUser.id}`} onClick={toggleDropdown}>My Liked Items</Link>
             </li>
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-              <Link to={`/projects/new`}>Create a Post</Link>
+              <Link to={`/projects/new`} onClick={toggleDropdown}>Create a Post</Link>
             </li>
           </ul>
         </div>
