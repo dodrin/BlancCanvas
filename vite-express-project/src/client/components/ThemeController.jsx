@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react";
 import { useTheme } from "../hooks/ThemeContext";
 
 // const themes = [
@@ -11,15 +12,24 @@ import { useTheme } from "../hooks/ThemeContext";
 // ];
 
 export default function ThemeController() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { theme, themes, handleThemeChange } = useTheme();
+
+  const handleOpenDropdown = useCallback(() => {
+    setIsDropdownOpen(true);
+  }, []);
+
+  const handleCloseDropdown = useCallback(() => {
+    setIsDropdownOpen(false);
+  }, []);
 
   // const handleThemeChange = (newTheme) => {
   //   setTheme(newTheme);
   //   localStorage.setItem("selectedTheme", newTheme);
   // };
-  
+
   return (
-    <div className="dropdown">
+    <div className="dropdown" onClick={handleOpenDropdown}>
       <label tabIndex={0} className="btn m-1">
         Theme
         <svg
@@ -32,21 +42,26 @@ export default function ThemeController() {
           <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
         </svg>
       </label>
-      <ul className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52">
-        {themes.map((t) => (
-          <li key={t.value}>
-            <input
-              type="radio"
-              name="theme-dropdown"
-              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-              aria-label={t.label}
-              value={t.value}
-              checked={theme === t.value}
-              onChange={() => handleThemeChange(t.value)}
-            />
-          </li>
-        ))}
-      </ul>
+      {isDropdownOpen && (
+        <ul className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52">
+          {themes.map((t) => (
+            <li key={t.value}>
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                aria-label={t.label}
+                value={t.value}
+                checked={theme === t.value}
+                onChange={() => {
+                  handleThemeChange(t.value);
+                  handleCloseDropdown();
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
