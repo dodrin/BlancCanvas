@@ -68,6 +68,9 @@ const DropDownUser = () => {
             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
               <Link to={`/likeditems/${loggedInUser.id}`}>My Liked Items</Link>
             </li>
+            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              <Link to={`/projects/new`}>Create a Post</Link>
+            </li>
           </ul>
         </div>
       )}

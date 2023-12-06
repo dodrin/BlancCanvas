@@ -51,24 +51,6 @@ export default function NavBar({ openModal }) {
                 </a>
               </span>
             </button>
-            <ul className="dropdown-menu absolute hidden text-primary pt-1 mx-5 group-hover:block z-50 pl-2">
-              <li className="z-100">
-                <a
-                  className="bg-base-100 font-subHeading font-semibold tracking-wider hover:text-primary-content py-4 px-4 block whitespace-no-wrap transition-all duration-500 before:content-[none] after:content-[none]"
-                  href="/artists"
-                >
-                  Browse Talents
-                </a>
-              </li>
-              <li className="z-100">
-                <a
-                  className="bg-base-100 font-subHeading font-semibold tracking-wider hover:text-primary-content py-4 px-4 block whitespace-no-wrap transition-all duration-500 before:content-[none] after:content-[none]"
-                  href="/projects/new"
-                >
-                  Create Posts
-                </a>
-              </li>
-            </ul>
           </li>
 
           <li>
