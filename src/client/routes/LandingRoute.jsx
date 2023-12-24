@@ -45,7 +45,7 @@ export default function Home({ openModal }) {
         <div className="flex flex-row justify-center items-center my-20">
           <div className="block relative overflow-hidden rounded-full w-80 h-80">
             <img
-              src="/src/client/assets/artist.jpg"
+              src="src/client/assets/artist.jpg"
               className="object-cover w-full h-full"
             />
           </div>
