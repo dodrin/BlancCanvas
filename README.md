@@ -1,6 +1,6 @@
 # Blanc Canvas - Lighthouse Labs Finals Project
-![Blanc Canvas screenshot](vite-express-project/docs/screenshots/BlancCanvas.png)
-![Blanc Canvas screenshot](vite-express-project/docs/screenshots/BlancCanvas_2.png)
+![Blanc Canvas screenshot](/docs/screenshots/BlancCanvas.png)
+![Blanc Canvas screenshot](/docs/screenshots/BlancCanvas_2.png)
 
 This project was created as a graduation project for [Lighthouse Labs](https://github.com/lighthouse-labs) Full stack Web Development Bootcamp
 
