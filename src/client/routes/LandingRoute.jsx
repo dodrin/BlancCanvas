@@ -15,7 +15,6 @@ export default function Home({ openModal }) {
           </h3>
           <div className="inline-flex space-x-6 w-full mt-6 sm:w-auto">
             <button
-              // className="btn inline-flex items-center justify-center w-full px-7 py-3 py-1 text-white duration-300 bg-button rounded-lg hover:bg-buttonHover focus:ring focus:ring-blue-300 focus:ring-opacity-80"
               className="btn btn-primary w-64 text-white"
               onClick={openModal}
             >
@@ -25,7 +24,7 @@ export default function Home({ openModal }) {
         </article>
         <div className="block relative overflow-hidden rounded-full w-80 h-80 ml-4">
           <img
-            src="/src/client/assets/hero_img.jpg"
+            src="/images/assets/hero_img.jpg"
             alt="victoria fantang alley"
             className="object-cover w-full h-full"
           />
@@ -45,7 +44,7 @@ export default function Home({ openModal }) {
         <div className="flex flex-row justify-center items-center my-20">
           <div className="block relative overflow-hidden rounded-full w-80 h-80">
             <img
-              src="src/client/assets/artist.jpg"
+              src="/images/assets/artist.jpg"
               className="object-cover w-full h-full"
             />
           </div>
@@ -70,7 +69,7 @@ export default function Home({ openModal }) {
           </div>
           <div className="block relative overflow-hidden rounded-full w-80 h-80">
             <img
-              src="/src/client/assets/community.jpg"
+              src="/images/assets/community.jpg"
               className="object-cover w-full h-full"
             />
           </div>
