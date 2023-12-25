@@ -40,16 +40,16 @@ BC provides a portfolio-based social marketplace connecting artists and those se
 
 Install dependencies with `npm install`
 
-### Frontend
+<!-- ### Frontend
 Open a terminal window to run tailwind css watcher
 
 ```
 cd vite-express-project
 npx tailwindcss -i ./src/client/main.css -o ./dist/output.css --watch
-```
+``` -->
 
-### Backend
-Open another terminal window to start the server
+<!-- ### Backend
+Open another terminal window to start the server -->
 ```
 cd vite-express-project
 npm run dev
