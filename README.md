@@ -45,7 +45,7 @@ Open a terminal window to run tailwind css watcher
 
 ```
 cd vite-express-project
-npx tailwindcss -i ./src/client/index.css -o ./dist/output.css --watch
+npx tailwindcss -i ./src/client/main.css -o ./dist/output.css --watch
 ```
 
 ### Backend

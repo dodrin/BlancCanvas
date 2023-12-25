@@ -9,11 +9,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @screen sm {
   html {
     font-size: 16px;
